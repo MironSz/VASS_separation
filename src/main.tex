@@ -1,0 +1,753 @@
+%! Author = Miron
+%! Date = 13.08.2022
+
+%% Preamble
+%\documentclass[11pt]{article}
+%
+%% Packages
+%\usepackage{amsmath}
+%
+%% Document
+%\begin{document}
+%
+%
+%
+%    \bibliography{main}
+%    \bibliographystyle{plain}
+%
+%
+%
+%
+%
+%\end{document}
+
+
+%
+% Niniejszy plik stanowi przykład formatowania pracy magisterskiej na
+% Wydziale MIM UW.  Szkielet użytych poleceń można wykorzystywać do
+% woli, np. formatujac wlasna prace.
+%
+% Zawartosc merytoryczna stanowi oryginalnosiagniecie
+% naukowosciowe Marcina Wolinskiego.  Wszelkie prawa zastrzeżone.
+%
+% Copyright (c) 2001 by Marcin Woliński <M.Wolinski@gust.org.pl>
+% Poprawki spowodowane zmianami przepisów - Marcin Szczuka, 1.10.2004
+% Poprawki spowodowane zmianami przepisow i ujednolicenie
+% - Seweryn Karłowicz, 05.05.2006
+% Dodanie wielu autorów i tłumaczenia na angielski - Kuba Pochrybniak, 29.11.2016
+
+% dodaj opcję [licencjacka] dla pracy licencjackiej
+% dodaj opcję [en] dla wersji angielskiej (mogą być obie: [licencjacka,en])
+\documentclass[licencjacka]{pracamgr}
+\usepackage{amsmath}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proof}[theorem]{Proof}
+%\makeatletter
+\newcommand{\xRightarrow}[2][]{\ext@arrow 0359\Rightarrowfill@{#1}{#2}}
+\usepackage{chemarrow}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+
+\newtheorem{definition}[theorem]{Definiton}
+
+\usepackage{tabularx, environ}
+\usepackage{cleveref}
+
+\makeatletter
+
+% https://tex.stackexchange.com/a/199244/26355
+\newcolumntype{\expand}{}
+\long\@namedef{NC@rewrite@\string\expand}{\expandafter\NC@find}
+
+\NewEnviron{problem}[2][]{%
+    \def\problem@arg{#1}%
+    \def\problem@framed{framed}%
+    \def\problem@lined{lined}%
+    \def\problem@doublelined{doublelined}%
+    \ifx\problem@arg\@empty%
+    \def\problem@hline{}%
+    \else%
+    \ifx\problem@arg\problem@doublelined%
+    \def\problem@hline{\hline\hline}%
+    \else%
+    \def\problem@hline{\hline}%
+    \fi%
+    \fi%
+    \ifx\problem@arg\problem@framed%
+    \def\problem@tablelayout{|>{\bfseries}lX|c}%
+    \def\problem@title{\multicolumn{2}{|%
+            >{\raisebox{-\fboxsep}}%
+        p{\dimexpr\textwidth-4\fboxsep-2\arrayrulewidth\relax}%
+        |}{%
+        \textsc{\Large #2}%
+    }}%
+    \else
+    \def\problem@tablelayout{>{\bfseries}lXc}%
+    \def\problem@title{\multicolumn{2}{>%
+            {\raisebox{-\fboxsep}}%
+        p{\dimexpr\textwidth-4\fboxsep\relax}%
+    }{%
+        \textsc{\Large #2}%
+    }}%
+    \fi%
+    \bigskip\par\noindent%
+    \renewcommand{\arraystretch}{1.2}%
+    \begin{tabularx}{\textwidth}{\expand\problem@tablelayout}%
+        \problem@hline%
+        \problem@title \\[2\fboxsep]%
+        \BODY          \\\problem@hline%
+    \end{tabularx}%
+    \medskip\par%
+}
+\makeatother
+
+% Dane magistranta:
+\autor{Miron Szewczyk}{383504}
+
+
+% Dane magistrantów:
+%\autor{Autor Zerowy}{342007}
+%\autori{Autor Pierwszy}{342013}
+%\autorii{Drugi Autor-Z-Rzędu}{231023}
+%\autoriii{Trzeci z Autorów}{777321}
+%\autoriv{Autor nr Cztery}{432145}
+%\autorv{Autor nr Pięć}{342011}
+
+\title{Tytuł pracy magisterskiej}
+
+
+%\tytulang{An implementation of a difference blabalizer based on the theory of $\sigma$ -- $\rho$ phetors}
+
+%kierunek:
+% - matematyka, informacyka, ...
+% - Mathematics, Computer Science, ...
+\kierunek{informatyka}
+
+% informatyka - nie okreslamy zakresu (opcja zakomentowana)
+% matematyka - zakres moze pozostac nieokreslony,
+% a jesli ma byc okreslony dla pracy mgr,
+% to przyjmuje jedna z wartosci:
+% {metod matematycznych w finansach}
+% {metod matematycznych w ubezpieczeniach}
+% {matematyki stosowanej}
+% {nauczania matematyki}
+% Dla pracy licencjackiej mamy natomiast
+% mozliwosc wpisania takiej wartosci zakresu:
+% {Jednoczesnych Studiow Ekonomiczno--Matematycznych}
+
+% \zakres{Tu wpisac, jesli trzeba, jedna z opcji podanych wyzej}
+
+% Praca wykonana pod kierunkiem:
+% (podać tytuł/stopień imię i nazwisko opiekuna
+% Instytut
+% ew. Wydział ew. Uczelnia (jeżeli nie MIM UW))
+\opiekun{dr. hab. Filigrana Fifaka\\
+Instytut Blabalii Fetorycznej\\
+}
+
+% miesiąc i~rok:
+\date{Maj 2017}
+
+%Podać dziedzinę wg klasyfikacji Socrates-Erasmus:
+\dziedzina{
+%11.0 Matematyka, Informatyka:\\
+%11.1 Matematyka\\
+% 11.2 Statystyka\\
+%11.3 Informatyka\\
+%11.4 Sztuczna inteligencja\\
+%11.5 Nauki aktuarialne\\
+%11.9 Inne nauki matematyczne i informatyczne
+}
+
+%Klasyfikacja tematyczna wedlug AMS (matematyka) lub ACM (informatyka)
+\klasyfikacja{D. Software\\
+D.127. Blabalgorithms\\
+D.127.6. Numerical blabalysis}
+
+% Słowa kluczowe:
+\keywords{blabaliza różnicowa, fetory $\sigma$-$\rho$, fooizm,
+    blarbarucja, blaba, fetoryka, baleronik}
+
+% Tu jest dobre miejsce na Twoje własne makra i~środowiska:
+\newtheorem{defi}{Definicja}[section]
+
+% koniec definicji
+
+\begin{document}
+
+    \maketitle
+
+%tu idzie streszczenie na strone poczatkowa
+    \begin{abstract}
+        W~pracy przedstawiono prototypową implementację blabalizatora
+        różnicowego bazującą na teorii fetorów $\sigma$-$\rho$ profesora
+        Fifaka. Wykorzystanie teorii Fifaka daje wreszcie możliwość
+        efektywnego wykonania blabalizy numerycznej. Fakt ten stanowi
+        przełom technologiczny, którego konsekwencje trudno z~góry
+        przewidzieć.
+    \end{abstract}
+
+    \tableofcontents
+%\listoffigures
+%\listoftables
+
+    \chapter*{Wprowadzenie}
+    \addcontentsline{toc}{chapter}{Wprowadzenie}
+%
+    VASS jako model obliczeniowy słabszy od maszyny Turinga, osiągalność jest rozstrzygalna.
+    Z-VASS jako jeszcze prostrzy model obliczeniowy.
+    Pytanie o separowalność, znane wyniki.
+
+    Następnie mówię co zrobiłem, czyli podaje odpowiedź dla deterministycznych vassów, ciekawe przypadki separacji/braku separacji, przypadek jednowymiarowy.
+
+
+    Co więcej w problemie homespace wyszedł wczoraj trochę podobny podproblem.
+
+
+    \chapter{Podstawowe pojęcia}\label{r:pojecia}
+
+
+    \section{Definicje}
+    Głownym tematem pracy są języki rozpoznawane przez struktury nazywane Vector Addition System with States (VASS).
+    O VASSach można intuicyjnie myśleć jak o automacie wyposażonym w stałą ilość liczników, każda tranzycja je modyfikuje
+    lecz nigdy ich wartość nie może spaść poniżej zera.
+    d--wymiarowym VASSem nazywamy krotkę $(Q,T,\Sigma,q_s,v_s,q_f,v_f)$ gdzie
+    \begin{itemize}
+        \item     $Q$ jest skończonym zbiorem stanów,
+        \item     $q_s \in Q$ oraz $v_s \in N^d$ stanem i wektorem początkowym,
+        \item     $q_f \in Q$ oraz $v_f \in N^d$ stanem i konfiguracją końcową
+        \item      $T \in Q \times Z^d \times \Sigma \times Q$ zbiorem tranzycji.
+    \end{itemize}
+    Konfiguracją VASSu nazywamy parę stanu i wektora $q(v)$ gdzie $q \in Q$ oraz  $v \in N^d$.
+
+
+    Tranzycje $(q,v,a,p)$ oznaczamy jako $q \xrightarrow[v]{a} p $. Wektor $v$ nazywamy efektem tranzycji,
+    $a$ literą tranzycji, $q$/$p$ stanem początkowym/końcowym.
+
+
+    Biegiem VASSu długości $n$ z konfiguracji $q(v)$ do konfiguracji $p(u)$ nazywamy ciąg tranzycji i kofniguracji :
+    \[q_1(v_1) \xrightarrow[a_1]{u_1} q_2(v_2) \dots \xrightarrow[a_{n-1}]{u_{n_1}} q_n(v_n) \] gdzie
+    sąsiednie stany początkowe i końcowe się zgadzają,
+
+    Słowo $a_1 \dots a_n$ jest rozpoznawane przez VASS jeśli istnieje poprawny bieg postaci
+    \[q_s(v_s) \xrightarrow[a_1]{u_1} q_2(v_2) \dots \xrightarrow[a_{n}]{u_{n}} q_f(v_f) \]
+
+%    zaczynający się w konfiguracji początkowej i
+%    kończący w konfiguracji końcowej
+
+    Przez język VASSu rozumiemy zbiór wszystkich słów rozpoznawanych przez VASS i oznaczamy $L(A)$ gdzie $A$ to VASS.
+
+
+    Z-VASSy są strukturamy bardzo podobnymi do VASSów.
+    Jedyną różnicą jest to, że w biegach Z-VASSu wszystkie kofnigruację mogą przyjmować wartości z $\mathbb{Z}^d$ zamiast tylko z $\mathbb{N}^d$.
+    Słowa rozpoznawane przez $\mathbb{Z}$-VASSy i języki $\mathbb{Z}$-VASSów rozumiemy analogicznie jak w przypadku VASSów.
+    Mechanizm rozróżniający VASSy od Z-VASSów będziemy nazywali słabym zero testem.
+
+    Mówimy, że dwa VASSy/Z-VASSy są równoważne jeśli ich języki są sobie równe,
+
+    Jeśli mamy dwa rozłączne języki $L_1$ i $L_2$ to powiemy, że język $L_3$ je separuje lewostronnie jeśli
+    $L_1 \subseteq L_3$ oraz $L_3 \cap L_2 = \emptyset$. Piszemy $L_1 \mid_{L_3} L_2$.
+
+
+    \section{Deterministyczne VASSy}
+    Wiele istotnych przykładów i wyników tej pracy opiera się na deterministycznych VASSach, które są szczególnym przypadkiem VASSów.
+    W tej pracy, pod pojęciem VASSu deterministycznego rozumiemy VASS w
+    którym dla każdego stanu i litery istnieje co najwyżej jedna tranzycja wychodząca z tego stanu po tej literze.
+    Dzięki determinizmowi możemy traktować VASS jako funkcję z konfiguracji i słowa w konfigurację lub $\bot$.
+    Jeśli VASS $A$ znajdujący się w konfiguracji $p(v)$ po przeczytaniu słowa $w$  znajdzie się w konfiguracji $q(u)$ to piszemy
+    $A(p(v),w) = q(u)$.
+
+    VASSy deterministyczne mają istotnie słabszą moc wyrazu niż ogólne VASSy, istnieją języki rozpoznawane tylko przez niedeterministyczne VASSy.
+    \begin{theorem}
+        \label{non-det}
+        Istnieją VASSy, dla których nie istnieje równoważny deterministyczny VASS.
+    \end{theorem}
+    \begin{proof}
+        Weźmy VASS $A$ nad alfabetem $\Sigma = \{a,b\}$  który rozpoznaje język  \[L = \{a^n b \Sigma^* a^n \mid n \in \mathbb{N}\}\].
+        Załózmy, że istnieje deterministyczny VASS $B=(Q,T,\Sigma,q_s,v_s,q_f,v_f)$ który rozpoznaje L.
+        Weżmy $n=|A|$ i słowa \[w_1 = a^n b a^n,\; w_2 = a^n b a^n b a^n\]
+        Ponieważ $w_1,w_2 \in L$ to \[A(q_s(v_s),w_1) = q_f(v_f), \;A(q_s(v_s),w_2) = q_f(v_f)\]
+        Dodatkowo, ponieważ $w_2 = w_1 b a^n$ to \[A(q_s(v_s),w_2) = A(q_s(v_s),w_1 b a^n)  = A(q_f(v_f),b a^n) = q_f(v_f) \]
+        Weźmy teraz słowa $w_3 = a^{2n} b a^{2n} $ oraz $w_4 =  w_3 b a^n $
+        $w_3 \in L$ a więc $A(q_s(v_s),w_3) = q_f(v_f)$, natomiast $w_4 \notin L$
+        Jednak, ponieważ $w_4 =  w_3 b a^n $ to $A(q_s(v_s),w_4) = A(q_f(v_f),b a^n) = q_f(v_f)$ czyli $w_4 \in L$
+        co daje sprzeczność z definicją języka L. Czyli taki $B$ nie może istnieć.
+    \end{proof}
+
+    Jedną z zalet rozważania deterministycznych VASSów jest łatwość konstruowania ich dopełnień.
+    Problem konstruowania dopełnień, nierostrzygalny w ogólnym przypadku, w przypadku deterministycznym ma proste rozwiązanie.
+
+
+    \begin{lemma}
+        \label{det-closure}
+        Mając dany deterministyczny VASS $A$ można skonstruować VASS $B$ taki, że
+        \[w \in L(A) \equiv w \notin L(B)\]
+    \end{lemma}
+    \begin{proof}
+        Ustalmy $A = (Q,T,\Sigma,q_s,v_s,q_f,v_f)$.
+        Dla każdego $w \in \Sigma^*$ chcemy wykryć czy w nie ma poprawnego biegu w VASSie A.
+        Dzięki determinizmowi A, po przeczytaniu każdej kolejnej litery A może znajdować się w co najwyżej jednej konfiguracji.
+        Nie istnieje poprawny bieg w po A jeśli zachodzi jeden z trzech warunków:
+        \begin{enumerate}
+            \item Po przeczytaniu całego słowa A dojdzie do konfiguracji innej niż $q_f(v_f)$
+            \item Po przeczytaniu pewnego prefiksu słowa w, A dojdzie do stanu z którego nie ma tranzycji wychodzącej po kolejnej literze w
+            \item Po przeczytaniu pewnego prefiksu słowa w, A dojdzie do konfiguracji z której istnieje tranzycja wychodząca po kolejnej literze,
+            lecz skorzystanie z niej spowodowałoby spadnięcie licznika poniżej zera.
+        \end{enumerate}
+
+        Skonstruujemy VASS B który na początku niedeterministycznie zgaduje, który z trzech warunków sprawia że słowo wejściowe $w$
+        nie posiada biegu akceptującego w A.
+        Następnie symuluje bieg $w$ po VASSie $A$ do momentu aż niedeterministycznie zgadnie, że ów warunek zaszedł.
+        Sprawdzenie każdego warunku jest kwestią prostego VASSowego gadżetu.
+
+    \end{proof}
+    Dowód ten istotnie korzysta z determinizmu VASSu A.
+    Gdyby A był niedeterministyczny, to B musiałby symulować jednocześnie każdy możliwy bieg słowa w po A.
+    Taka konstrukcja jest wykonalna dla automatów, gdzie musimy śledzić tylko wszystkie możliwe stany,
+    lecz jest niemożliwa dla VASSów, ponieważ ilość konfiguracji w których możemy się znaleźć rośnie wykładniczo ze względu na długość słowa.
+    Modelem obliczeniowym który pozwala na symulowanie takiej sytuacji są Upward Closed Transistion Systems TODO!!
+
+
+    Z lematu \ref{non-det} wiemy, że istnieje VASSy niedeterminizowalne.
+    Okazuje się, że nie tylko istnieją ale też nie da się rozpoznać, czy dany VASS jest determinizowalny.
+
+    \begin{theorem}
+        Następujący problem jest nierostrzygalny:
+        \begin{problem}[]{Determinizacja VASSu}
+            Task: & VASS $A$\\
+            Problem: & Czy istnieje deterministyczny VASS $B$, taki że $L(A) = L(B)$\\
+        \end{problem}
+
+
+    \end{theorem}
+
+    \begin{proof}
+        Dowód wykorzystuje techniki podobne jak dowód lematu \ref{det-closure} o braniu dopełnień.
+        Ustalmy T, maszynę z licznikami i zerotestami, która ma co najwyżej jeden poprawny bieg.
+        Jak dobrze wiadomo, problem stopu jest nierostrzygalny dla maszyn Turinga, które są równoważne maszynom z licznikami i zerotestami.
+        Dowolny bieg maszyny z zerotestami można zakodować jako ciąg krotek (stan maszyny, zawartość liczników) i tranzycji.
+
+        VASSy są zbyt słabym modelem obliczeniowym by móc zweryfikować czy dany zapis jest poprawnym biegiem.
+        Ponieważ problem osiągalności konfiguracji jest rozstrzygalny dla VASSów to, to gdyby były dość silne
+        by weryfikować poprawność zapisu to przy ich pomocy moglibyśmy rozwiązać problem stopu dla maszyn z zerotestami i maszyn Turinga.
+
+        Są natomiast wystarczające silne by rozpoznać niepoprawne biegi.
+        To znaczy, dla danej maszyny z zerotestami można łatwo skonstruować VASS który rozpoznaje niepoprawne zapisy biegów
+        tej maszyny.
+        Zapis może być niepoprawny z powodów czysto składniowych, liczniki w sąsiednich konfiguracjach mogą się nie zgadzać
+        lub zerotest może być niepoprawnie wykonany.
+        Każdy z tych powodów może być wykryty przez VASS.
+
+
+        Niech $A$ będzie VASSem, takim że $L(A)=\{$ niepoprawne zapisy biegów maszyny T$\}$.
+        Załóżmy, że potrafimy zdeterminizować $A$.
+        Niech $B$ będzie deterministycznym VASSem, takim że $L(B)=L(A)$.
+        Ponieważ $B$ jest deterministyczne to zgodnie z TODO potrafimy skonstruować VASS C taki, że $L(C) = \overline{L(B)}$.
+        Czyli C akceptuje dokładnie poprawne biegi maszyny T.
+        Sprawdzając czy C posiada jakikolwiek akceptujący bieg (co można zrobić w Ackermannowym czasie TODO cytowanie)
+        możemy rozwiązać problem stopu dla maszyny T, co jest oczywistą sprzecznością.
+
+        Czyli nie może istnieć algorytm który znajduje determinizację VASSów.
+        Warto zauważyć, że to twierdzenie nie implikuje twierdzenia  \ref{non-det}, teoretycznie mogą istnieć VASSy dla których
+        równoważny deterministyczny VASS istnieje ale jest nie obliczalny.
+    \end{proof}
+
+%|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+    \chapter{Kontekst}
+    Separacja języków jest jednym z klasycznych, szeroko badanych problemów informatyki teoretycznej.
+    W ogólnej formie można go sformułować następująco:
+
+
+    \begin{problem}[]{Problem Separacji}
+        Task: & Języki $L_1,L_2$ i klasa języków $\mathbb{B}$.\\
+        Problem: & Czy istnieje język $L_3 \in \mathbb{B}$ taki, że $L_1 \mid_{L_3} L_2$. \\
+    \end{problem}
+
+    Problem ten jest rozważany dla różnych klas języków $L_1,L_2$ i różnych klas $\mathbb{B}$.
+    W tym rozdziale przybliżę kilka interesujących wyników i podam intuicję dlaczego metody zastosowane w nich nie
+    poskutkowały w przypadku separacji języków VASSów przez języki $\mathbb{Z}$-VASSów
+
+
+    \section{Separacja języków 1-VASSów za pomocą języków regularnych}
+    https://arxiv.org/abs/1701.02808
+
+
+    W pracy \"Regular Separability of One Counter Automata\" Wojciech Czerwiński i Sławomir Lasota zbadali między innymi
+    problem separacji języków 1-VASSów.
+    Pokazali, że problem ten jest rozstrzygalny w czasie PSPACE.
+
+    \begin{definition}
+        Niech $A=TODO$ będzie 1-VASSem.
+        n-aproksymantem $A$ nazwiemy automat $A_n$ który symuluje $A$ dokładnie dla małych wartości licznika
+        i z pewną dokładnością dla dużych.
+        \begin{itemize}
+            \item   Zbiór stanów
+        \end{itemize}
+    \end{definition}
+
+
+    \section{Separacja VASSów z akceptacją przez stan za pomocą języków regularnych}
+    JEst równoważna pustości przecięcia
+    https://arxiv.org/abs/1702.05334
+
+
+%    W pracy skupiam się na problemie separaji języków VASSów przez języki $\mathbb{Z}$-VASSów, który formułuje się:
+%
+%    \begin{problem}[]{Problem separacji języków VASSów przez języki $\mathbb{Z}$-VASSów}
+%        Task: &VASSy $V_1$ i $V_2$.\\
+%        Problem: & Czy istnieje Z-VASS Z taki, że $L(V_1) \mid_{L(Z)} L(V_2)$ \\
+%    \end{problem}
+
+
+    https://arxiv.org/pdf/1701.02808.pdf
+    Tutaj jest o separacji 1-VASSów przez aproksymanty
+% Dotychczas stosowane metody. Schemat metod, z dowodami i pokazać gdzie metoda się załamuje
+% Aproksymant dla reg separawolności,
+
+% REg separowalność dla vass przez osiągalność
+% Nierostrzygalność pustości przecięcia
+
+
+%    |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+
+    \chapter{Przypadki separacji}
+    Rozważania na problemem, zacznę od pokazania kilku istotnych przypadków łatwej separacji.
+    Dają one istotną intuicję jak patrzeć na problem oraz na możliwości i ograniczenia VASSów/Z-VASSów.
+
+
+    \section{Separacja deterministycznych VASSów wykorzystując dopełnienia języków}
+    \begin{example}
+        Niech B będzie dowolnym determininistycznym VASSem.
+        Wtedy istnieje Z-VASS Z, taki że:
+        \[\forall_A L(A) \cap L(B) = \emptyset \Rightarrow L(A) \mid_{L(Z)} L(B)\]
+        Takim Z-VASSem jest Z-VASS rozpoznający dopełnienie B, tak jak w lemacie TODO.
+
+    \end{example}
+    Przypadek ten jest ciekaw z kilku względów.
+    Po pierwsze, problem separacji nie zależy w żaden sposób od lewego VASSu.
+    Po drugie, pokazuje że problem jest trywialny dla względnie szerokiej grupy przypadków.
+    By znaleźć przypadek braku separacji, prawy VASS musi istotnie korzystać z niedeterminizmu.
+
+
+    \section{Niedeterministyczny przypadek}
+    Poprzedni przypadek separacji polegał na determiniźmie prawego VASSu.
+    Co więcej, separujący Z-VASS zależał tylko i wyłącznie od prawego VASSu, był wspólny dla wszystkich możliwych lewych VASSów.
+    Dlatego warto wskazać istotnie niedeterministyczny VASS, który można odseparować lewostronnie od każdego rozłącznego VASSu.
+
+
+    \begin{example}
+        Ustalmy alfabet $\Sigma=\{a,b\}$.
+        Słowa nad tym alfabetem możemy zapisać jako $a^{n_1}ba^{n_2}....ba^{n_k}b$.
+        Niech B będzie VASSem który rozpoznaje słowa w których conajmniej dwa bloki a mają równą długość, czyli $\exists_{i,j} i \neq j \land n^i = n^j$.
+        B po przeczytaniu litery $b$ może niedeterministycznie zacząć zliczać długość obecnego bloku
+        inkrementując licznik aż przeczyta następną literę $b$, niejako zgadując, że to jest jeden z bloków o równej długości.
+        Następnie w identyczny sposób VASS niedeterministycznie zaczyna dekrementować ten sam licznik, zliczając długość kolejnego bloku.
+        Jeśli długości bloków są sobie równe, to licznik po przeczytaniu słowa będzie równy zero.
+
+        Języki rozłączne z $L(A)$ składają się z słów zawierających tylko bloki różnej długości.
+
+        Język VASSa ma pewne ciekawe właściwości, które pozwalają go odseparować od każdego innego języka 1-VASSa.
+        \begin{lemma}
+            Niech A będzie 1-VASSem.
+            Jeśli $L(A) \cap L(B)  = \emptyset$ to istnieje liczba $n \in \mathbb{N}$ taka że :
+            \[\forall_{w \in L(A)} \#_a(w) <n \or \#_b(w) <n\]
+            Innymi słowy, języki rozłączne z $L(B)$ muszą mieć ograniczenie na ilość
+        \end{lemma}
+
+        \begin{proof}
+            Ustalmy A i załóżmy, że teza nie zachodzi.
+            Niech n będzie równe $3*|A|$.
+            Weźmy słowo $w \in L(A)$, takie że $\#_a(w) >n \land \#_b(w) >n$.
+            Pokażemy, że możemy tak napompować słowo w by było ciągle akceptowane przez A i zawierało dwa bloki liter a tej samej długości.
+
+
+            Ustalmy teraz bieg VASSu A po słowie w i przyjrzyjmy się licznikowi tego VASSu podczas biegu.
+            W szczególności przyjrzyjmy się konfiguracjom VASSu po przeczytaniu każdej litery b,
+            nazwijmy je $q_1(v_1), \dots q_k(v_k)$.
+            Istnieje podciąg tych konfiguracji długości co najmniej XX taki, że wszystkie stany w nim są sobie równe, nazwijmy go
+            $q(u_1), \dots ,q(u_m)$, będziemy na nie mówić konfiguracje wyróżnione.
+            Podzielmy teraz słowo w na trzy podsłowa $w_1,w_2,w_3$ tak by $w=w_1 w_2 w_3$ oraz
+            by każde z tych podsłów kończyło się na literę b i zawierało co najmniej $\lfloor\frac{m}{3} \rfloor$ liter odpowiadających konfigruacjom
+            wyróżnionym.
+            Czyli w pewnym sensie dzielimy słowo w na trzy "równe" podsłowa.
+
+            Reszta dowodu dzieli się na dwa przypadki:
+            \begin{enumerate}
+                \item Podczas biegu po słowie $w$ licznik powtórzy swoją wartość w dwóch konfiguracjach wyróżnionych.
+                Niech $w=w_4 w_5 w_6$ gdzie powatarzające się wyróżnione konfiguracje występują na początkach słów $w_5$ i $w_6$.
+                W takim wypadku, możemy dowolnie wiele razy napompować podsłowo $w_6$, czyli słowa $w_4 w_5^* w_6$ też są akceptowane
+                przez VASS A, chociaż zawierają dowolnie dużo bloków liter a o tej samej długości.
+                \item Sytuacja z pierwszego przypadku nie ma miejsca, każda wyróżniona konfiguracja ma inną wartość licznika.
+                Nie możemy zastosować wtedy tak prostego pompowania jak w pierwszym przypadku.
+
+
+                Przyjrzyjmy się wartościom licznika w wyróżnionych konfiguracjach, występujących podczas czytania $w_2$, środkowego podsłowa.
+                Ponieważ wartości licznika w wyróżnionych konfiguracjach się nie powtarzają, muszą one osiągać duże wartości.
+                Dokładniej, musi istnieć taka której licznik wynosi co najmniej XXXXX.
+                \item TODO TODOD TODO TODO
+                Załózmy, że znajdziemy dwie takie $q(u_i),q(u_j)$ gdzie $i<j,u_i < u_j$.
+                Jeżeli chcemy pompować podsłowo im odpowiadające
+            \end{enumerate}
+
+
+        \end{proof}
+
+
+    \end{example}
+
+%    |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+
+    \chapter{Przypadki braku separacji}
+
+    Pierwszym pytaniem które należy zadać badając problem separacji, jest pytanie o przypadek braku separacji.
+    W niektórych przypadkach każdą parę rozłącznych języków można odseparować.
+    Przykładowo, jak dowiedli XXXX i XXXX w pracy XXXX, nie istnieje para języków VASSów z warunkiem akceptacji przez pokrywalność,
+    która by była nieseparowalna przez język regularny.
+
+
+    \section{Przypadek deterministyczny}
+    W XXXX pokazaliśmy, że jeżeli prawy VASS jest deterministyczny to da się go odseparować od każdego innego VASSu.
+    Odwracając sytuację i używając niemal identycznych argumentów jak przy dowodzie XXXX możemy skonstruowaćpierwszy
+    przypadek pary nieseparowalnych VASSów.
+
+    \begin{example}
+        Niech A będzie deterministycznym VASSem który nie jest równoważny żadnemu Z-VASSowi.
+        Niech B będzie VASSem rozpoznającym dokładnie dopełnienie A, dzięki XXXXX wiemy jak go skonstruować.
+        Wtedy, nie istnieje Z-VASS Z taki że $A \mid_Z B$.
+        Gdyby istniał, to ponieważ musi zawierać A i mieć puste przecięcie z B, musiałby by być równy dokładnie A.
+        Co jest sprzeczne z założeniami o A.
+        Jako przykładowy A można wziąć język poprawnych nawiasowań.
+    \end{example}
+
+    Ten przypadek
+
+
+    \section{Przerwa między językami}
+
+
+    \section{Przeciwobraz języka nawiasowań}
+    Wygodnymi narzędziami do badania problemu separacji są języki poprawnych nawiasowań oraz transducery.
+    Narzędzia te pozwalają sprowadzić problem do pojedynczego, kanonicznego przypadku który łatwo rozwiązać a rozwiązanie
+    przenieść na przypadek ogólny.
+    Dodatkowo, dają ciekawy wgląd w problem istnienia Z-VASSu równoważnego danemu VASSowi.
+
+    \begin{definition}
+        Językiem n-nawiasowań $N_n \subset \{a_1,b_1, \dots , a_n, b_n\}$ nazwiemy język w którym
+        \begin{gather*}
+            \forall_{w \in N_n} \forall_i \forall_{s \, prefiks \,w} \#_{a_i}(s) \geq \#_{b_i}(s)\\
+            \forall_{w \in N_n} \forall_i \#_{a_i}(s) = \#_{b_i}(s)\\
+        \end{gather*}
+        Innymi słowy, jak ustalimy słowo $w \in N_n$ oraz liczbę i to podsłowo w składające się wyłącznie z liter $a_i,b_i$ musi definiować poprawne nawiasowanie.
+    \end{definition}
+
+
+    \begin{definition}
+        Transducerem nazwiemy automat,  gdzie każda tranzycja
+        jest dodatkowo etykietowana literą/literami wyjściowego alfabetu.
+        Jeśli wejściowy alfabet to $\Sigma$ a wyjściowy to $\Gamma$ to transducer T definiuje funkcje :
+        \[T:\Sigma ^* \rightarrow \Gamma ^*\]
+    \end{definition}
+
+    \begin{lemma}
+        Jeśli $A$ to VASS/Z-VASS a T to transducer to język $T(L(A))$ jest rozpoznawany przez VASS/Z-VASS
+    \end{lemma}
+
+    \begin{lemma}
+        \label{transducer_rev_im}
+        Języki VASSów są zamknięte na branie przeciwobrazów transducreów.
+        Jeżeli B jest VASSem a T transducerem to istnieje A, taki że
+        \[L(B) = T^{-1}(L(A))\]
+    \end{lemma}
+
+    \begin{lemma}
+        Jeśli $A$ jest n wymiarowym VASSem to istnieje transducer T i język n-nawiasowań $N_n$, taki że
+        \[L(A) = T(N_n)\]
+    \end{lemma}
+
+    \begin{lemma}
+        Dany jest VASS A.
+        Jeśli A jest Z-VASSem to nie istnieje transducer T, taki że T(L(A)) = $N_n$.
+        Ujmując to inaczej, jeśli istnieje T, które przenosi L(A) na $N_n$ to A nie ma równoważnego Z-VASSu.
+    \end{lemma}
+
+    Jest to ciekawa własność transducerów i języków nawiasowań.
+    Korzystając z niej możemy zdefiniować istotną rodzinę przypadków braku separacji.
+
+    \begin{theorem} {bracket-language}
+        Ustalmy n-wymiarowy VASS $A$ który nie jest równoważny żadnemu Z-VASSowi.
+        Jeśli istnieje transducer $T$, taki że $T(L(A)) = N_n$ to istnieje VASS $B$ którego języka nie da się odseparować od języka A.
+    \end{theorem}
+    \begin{proof}
+        Ustalmy n-wymiarowy VASS $A$ i transducer $T$, $T(L(A)) = N_n$.
+        Weźmy dopełnienie języka $N_n$, nazwijmy je $\overline{N_n}$, $w \in \overline{N_n} \equiv w \notin N_n$.
+        Łatwo skonstruować taki VASS C, że $L(C) = N_n$.
+        Zgodnie z (TODO odwołanie do lematu), można skonstruować VASS B który rozpoznaje dokładnie przeciw obraz języka
+        $\overline{N_n}$ w T, $L(B) = T^{-1}(\overline{N_n})$.
+        $L(A) \cap L(B) = \emptyset$ ponieważ nic z L(A) nie może być w przeciwobrazie $\overline{N_n}$ względem F skoro obrazem L(A) jest $N_n$.
+
+        Załóżmy, że istnieje Z-VASS Z, taki żę $L(A) \mid_{L(Z)} L(B)$ i przyjrzyjmy się $F(L(Z))$.
+        Ponieważ $L(A) \subset L(Z)$ to $F(L(A)) = N_n \subset F(Z)$, ale skoro $L(Z) \cap L(B) = \emptyset$ to L(Z) musi być dokładnie równe $N_n$.
+        Czyli mamy Z-VASS Z i transducer T, takie że $T(L(Z)) = N_n$, czyli potrafimy przedstawić język nawiasowań jako obraz
+        języka Z-VASSu wględem transducera co jest sprzecznością.
+
+        Czyli Z-VASS Z nie może istnieć.
+
+    \end{proof}
+
+    Intuicyjnie, twierdzenie \ref{bracket-language} mówi, że o ile VASS korzysta choć trochę z właściwości zero testu,
+    to istnieje VASS którego od niego nie odseparujemy.
+    Osobnym problemem pozostaje jak wykryć czy dany język można przekstszatłcić na język nawiasowań.
+
+
+    \section{Rozpoznawanie czy VASS jest Z-VASSem}
+    Istotnym problemem w kontekście tej pracy jest następujący problem:
+
+    \begin{problem}[]{Istnienie równoważnego Z-VASSu}
+        Task: & VASS A\\
+        Problem: & Czy istnieje  Z-VASS B równoważny VASSowi A, czyli $L(A) = L(B)$ \\
+    \end{problem}
+
+
+    Ustalmy deteterministczny 1-VASS A.
+    Patrząc na tranzycje miedzy stanami znajdźmy wszystkie silne spójne składowe.
+    Cały VASS możemy przedstawić jako skierowany, acykliczny graf silnych spójnych składowych (DAG - directed acyclic graph).
+    Kązdy DAG możemy przedstawić jako skończoną sumę skończonych ścieżek.
+    Czyli VASS A jest równoważny sumie VASSów $A_1, \dots A_n$ gdzie każdy VASS $A_i$ odpowiada za pojedynczą ścieżkę pokrywającą DAG spójnych składowych.
+    Dzięki determinizmowi A, każdemu słowu w odpowiada co najwyżej jeden $A_i$ taki że $w \in L(A_i)$
+    Jeśli każdy $A_i$ jest równoważny pewnemu $B_i$ to istnieje B równoważne A.
+    Jeśli któryś $A_i$ nie jest równoważny Z-VASSowi to znajdzimy świadczące o tym przykłady (korzystające z mechanizmów pompowania) które
+    zaświadczą też o tym, że A nie jest równoważne Z-VASSowi.
+    Czyli A jest równoważne Z-VASSowi wtedy i tylko wtedy gdy każdy $A_i$ jest równoważny Z-VASSowi.
+    Przedstawię i udowodnię teraz algorytm sprawdzenia czy jeden $A_i$ jest równoważny pewnemu Z-VASSowi oraz jego konstrukcję.
+    \begin{theorem}
+        Niech A będzie deterministycznym 1-VASSem, którego silne spójne składowe tworzą ścieżkę.
+        Istnieje Z-VASS B, równoważny A wtedy i tylko wtedy gdy w żadnej silnej spójnej składowej nie istnieje para cykli o wspólnym stanie,
+        takich że jeden cykl ma efekt ściśle dodatni a drugi ściśle ujemny.
+    \end{theorem}
+    Intuicyjnie, VASS jest istotnie VASSem (czyli nie istnieje równoważny Z-VASS) jeśli znajdziemy fragment który korzysta z słabego zerotestu.
+    \begin{proof}
+        Niech A będzie deterministycznym 1-VASSem, którego silne spójne składowe tworzą ścieżkę i żadna spójna składowa
+        nie zawiera dwóch cykli takich jak w sformułowaniu twierdzenia.
+
+        Czyli A ma następującą postać
+        \[S_1 \rightarrow S_2 \rightarrow \dots \rightarrow S_n     \]
+        gdzie $S_1, \dots , S_n$ są silnie spójnymi składowymi.
+        Dzięki właściwościom A z założeń, w każdej silnie spójnej wszystkie cykle mają niedodatni albo nieujemny efekt.
+        Nazwijmy silnie spójne składowe dodatnimi i ujemnymi.
+%        Gdyby w którejś nieujemnej spójnej składowej był cykl z ujemnym efektem, moglibyśmy go pompować dowolnie dużo razy i uzyska
+
+        Weźmy teraz nieujemną silnie spójną składową $S_i$.
+        Dzięki jej nieujemności, istnieje $k \in \mathbb{N}$ które jest w pewnym sensie ograniczeniem na dekrementację w ramach tej silnej spójnej składowej.
+        Ściślej mówiąc
+        \[\forall_{q \in Q_{S_i}} \forall_{n \in \mathbb{N}} \forall_w S_i(q(n),w) -n \geq k\]
+        Czyli możemy zastąpić silnie spójnie składową $S_i$ przez nowy ``gadżet`` który jest kopią $S_i$ która dodatkowo
+        na początek ``konsumuje`` zawartość licznika i zapisują ją w stanie, przy czym nie konsumuje więcej niż $k$.
+        Następnie symuluje działanie $S_i$ operując na wartości zapisanej w stanie zamiast na liczniku, przy czym nie pozwala
+        by wartość licznika zapisana w stanie nie spadła poniżej zera.
+        Jeśli wartość licznika zapisana w stanie przekroczy wartość $k$ to jest gwarancja, że wewnątrz tej spójnej składowej
+        wartość licznika nie może już spaść poniżej zera.
+        Tak więc można ``skonsumować`` wartość licznika zapisaną w stanie, zinkrementować ``normalny`` licznik i dalej operować już tylko na nim
+        nie przejmując się słabymi zerotestami.
+        Podobnie wychodząc z silnie spójnej składowej należy `skonsumować`` wartość licznika zapisaną w stanie i zinkrementować ``normalny`` licznik.
+
+
+        Przypadek z  niedodatnimi silnymi spójnymi składowymi jest trochę trudniejszy.
+        Dzięki jej niedodatności, istnieje $k \in \mathbb{N}$ które jest w pewnym sensie ograniczeniem na inkrementację w ramach tej silnej spójnej składowej.
+        Ściślej mówiąc
+        \[\forall_{q \in Q_{S_i}} \forall_{n \in \mathbb{N}} \forall_w S_i(q(n),w) -n \leq k\]
+        W stanie będziemy trzymali informację ``o ile obecna wartość licznika jest większa od najmniejszej wartości licznika wewnątrz obecnej silnej spójnej składowej``.
+        Dzięki ograniczeniu na $k$, wartość ta może być tylko z przedziału $\\[0,k\\]$.
+        Korzystając z tej informacji oraz z wartości na ``normalnym`` liczniku możemy przy wyjściu z silnie spójnej składowej
+        sprawdzić, czy najmniejsza wartość na biegu wewnątrz obecnej silnie spójnej składowej była większa od zera.
+        W tym celu, najpierw dekrementujemy wartość na liczniku o wartość zapisaną w stanie, a następnie sprawdzamy czy możemy osiągnąć
+        wartość zero
+
+
+        NIESKOŃCZONE
+
+    \end{proof}
+
+    \section{Reszta rozdziału, sekcja dla wizualnego rozdzielenia}
+    Sprawdzenie czy zachodzi separacja wymaga sprawdzenia czy lewy VASS jest Z-VASSem.
+
+    Pokazuję algorytm i konstrukcję sprawdzenia czy det 1-VASS jest równoważny Z-VASSowi (konstrukcja poprzez patrzenie na DAG silnych spójnych składowych)
+
+    Pokazuję, że jeśli nie jest to mogę skonstruować transducer przenoszący go na język nawiasowań a więc i skonstruować nieseparowalny język.
+
+%    |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+
+    \chapter{Podsumowanie}
+    \begin{enumerate}
+        \item         Pokazałem przypadki separacji i braku separacji, dużo zrobione w kontekście deterministycznych.
+
+        \item         Podałem ogólną (przy założeniu istnienia trnasducera) konstrukcję języka nieseparowalnego.
+
+        \item         Stawiam hipotezę, że albo taki trnasducer istnieje albo język jest równoważny Z-VASSowi.
+
+        \item         Celem dalszych badań powinien być ogólny algorytm sprawdzający separację, którego tu mi się nie udało znaleźć.
+
+        \item         Dodatkowymi celami które wynikły z tej pracy jest problem "Czy dany VASS jest istotnie VASSem", sugerowany kierunek to udowodnie tezy
+        z trnasducerami.
+
+    \end{enumerate}
+
+
+%    |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+    \begin{thebibliography}{99}
+        \addcontentsline{toc}{chapter}{Bibliografia}
+
+        \bibitem[Bea65]{beaman} Juliusz Beaman, \textit{Morbidity of the Jolly
+        function}, Mathematica Absurdica, 117 (1965) 338--9.
+
+        \bibitem[Blar16]{eb1} Elizjusz Blarbarucki, \textit{O pewnych
+        aspektach pewnych aspektów}, Astrolog Polski, Zeszyt 16, Warszawa
+        1916.
+
+        \bibitem[Fif00]{ffgg} Filigran Fifak, Gizbert Gryzogrzechotalski,
+        \textit{O blabalii fetorycznej}, Materiały Konferencji Euroblabal
+        2000.
+
+        \bibitem[Fif01]{ff-sr} Filigran Fifak, \textit{O fetorach
+            $\sigma$-$\rho$}, Acta Fetorica, 2001.
+
+        \bibitem[Głomb04]{grglo} Gryzybór Głombaski, \textit{Parazytonikacja
+        blabiczna fetorów --- nowa teoria wszystkiego}, Warszawa 1904.
+
+        \bibitem[Hopp96]{hopp} Claude Hopper, \textit{On some $\Pi$-hedral
+        surfaces in quasi-quasi space}, Omnius University Press, 1996.
+
+        \bibitem[Leuk00]{leuk} Lechoslav Leukocyt, \textit{Oval mappings ab ovo},
+        Materiały Białostockiej Konferencji Hodowców Drobiu, 2000.
+
+        \bibitem[Rozk93]{JR} Josip A.~Rozkosza, \textit{O pewnych własnościach
+        pewnych funkcji}, Północnopomorski Dziennik Matematyczny 63491
+        (1993).
+
+        \bibitem[Spy59]{spyrpt} Mrowclaw Spyrpt, \textit{A matrix is a matrix
+        is a matrix}, Mat. Zburp., 91 (1959) 28--35.
+
+        \bibitem[Sri64]{srinis} Rajagopalachari Sriniswamiramanathan,
+        \textit{Some expansions on the Flausgloten Theorem on locally
+        congested lutches}, J. Math. Soc., North Bombay, 13 (1964) 72--6.
+
+        \bibitem[Whi25]{russell} Alfred N. Whitehead, Bertrand Russell,
+        \textit{Principia Mathematica}, Cambridge University Press, 1925.
+
+        \bibitem[Zen69]{heu} Zenon Zenon, \textit{Użyteczne heurystyki
+        w~blabalizie}, Młody Technik, nr~11, 1969.
+
+    \end{thebibliography}
+
+\end{document}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% coding: latin-2
+%%% End:

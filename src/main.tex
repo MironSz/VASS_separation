@@ -1,27 +1,5 @@
 %! Author = Miron
 %! Date = 13.08.2022
-
-%% Preamble
-%\documentclass[11pt]{article}
-%
-%% Packages
-%\usepackage{amsmath}
-%
-%% Document
-%\begin{document}
-%
-%
-%
-%    \bibliography{main}
-%    \bibliographystyle{plain}
-%
-%
-%
-%
-%
-%\end{document}
-
-
 %
 % Niniejszy plik stanowi przykład formatowania pracy magisterskiej na
 % Wydziale MIM UW.  Szkielet użytych poleceń można wykorzystywać do
@@ -38,7 +16,7 @@
 
 % dodaj opcję [licencjacka] dla pracy licencjackiej
 % dodaj opcję [en] dla wersji angielskiej (mogą być obie: [licencjacka,en])
-\documentclass[licencjacka]{pracamgr}
+\documentclass[magisterska]{pracamgr}
 \usepackage{amsmath}
 \newtheorem{theorem}{Twierdzenie}[section]
 \newtheorem{corollary}{Uwaga}[theorem]
@@ -146,7 +124,7 @@
 % (podać tytuł/stopień imię i nazwisko opiekuna
 % Instytut
 % ew. Wydział ew. Uczelnia (jeżeli nie MIM UW))
-\opiekun{dr. hab. Wojeciech Czerwiński\\
+\opiekun{dr hab Wojciecha Czerwińskiego\\
 Instytut Informatyki\\
 }
 
@@ -188,11 +166,11 @@ Instytut Informatyki\\
 %tu idzie streszczenie na strone poczatkowa
     \begin{abstract}
         W pracy badam problem separacji języków VASSów przez języki Z-VASSów.
-        Podaję zarówno interesujące przypadki separacji ja i braku separacji.
+        Podaję zarówno interesujące przypadki separacji jak i braku separacji.
         Szczególnie pochylam się nad VASSami deterministycznymi, które są słabszym modelem obliczeniowym niż VASSy.
-        Przyglądam się również problemowi szukania Z-VASSu równoważnego danemu VASSowi, problem ten rozwiązuje w przypadku
+        Przyglądam się również problemowi szukania Z-VASSu równoważnego danemu VASSowi, problem ten rozwiązuję w przypadku
         jednowymiarowych, deterministycznych VASSów.
-        Korzystając z transducerów, podaję  konstrukcję języka nieseparowalnego.
+        Korzystając z transducerów, podaję konstrukcję języków nieseparowalnych od siebie.
     \end{abstract}
 
     \tableofcontents
@@ -202,12 +180,12 @@ Instytut Informatyki\\
     \chapter*{Wprowadzenie}
 
     \addcontentsline{toc}{chapter}{Wprowadzenie}
-    Vector Addition System with States (VASS), kojarzone szerzej jako Sieci Petriego, są jednym z lepiej znanym i zrozumianych modeli
+    Vector Addition System with States (VASS), kojarzone szerzej jako Sieci Petriego, są jednym z lepiej znanych i zrozumianych modeli
     obliczeniowych, wykorzystywanych do reprezentacji współbieżnych procesów.
-    Kluczowymi problemami w teorii VASSów jest problem pokrywalności, będący w klasie złożoności ExpSpace-complete, oraz problem
-    osiągalności będący w klasie złożoności Ackermann-complete\cite{Ackermann-complete}.
+    Kluczowymi problemami w teorii VASSów jest problem pokrywalności, będący ExpSpace-zupełny, oraz problem
+    osiągalności będący Ackermann-zupełny\cite{Ackermann-complete}.
     VASSy są jednym z silniejszych modeli obliczeniowych dla których problem osiągalności, równoważny problemowi stopu, jest rozstrzygalny.
-    Jeszcze prostszym modelem obliczeniowym są Z-VASSy, dla których problem osiągalności jest już w klasie złożoności PSPACE-complete.
+    Jeszcze prostszym modelem obliczeniowym są Z-VASSy, dla których problem osiągalności jest już PSPACE-zupełny.
 
 
     Jednym z pierwszych pytań jaki można zadać badając klasę języków $\mathbb{F}$ jest problem charakteryzacji.
@@ -215,6 +193,7 @@ Instytut Informatyki\\
     W pewnych przypadkach problem charakteryzacji uogólnia się do problemu separacji.
     Mając daną klasę języków $\mathbb{F}$, prostrzą klasę $\mathbb{G}$, dwa języki $L_1,L_2 \in \mathbb{F}$ odpowiedzieć na
     pytanie czy istnieje $S \in \mathbb{G}$ taki że $L_1 \subset S$ oraz $S \cap L_2 = \emptyset$.
+    Gdy klasa $F$ jest efektywnie zamknięta na dopełnienia, problem separacji jest uogólnieniem problemu charakteryzacji.
     Problem separacji jest jednym z klasycznych i szeroko badanych problemów teorii języków, najczęściej dla języków regularnych.
     Znane wyniki obejmują separacje:
     \begin{enumerate}
@@ -233,22 +212,23 @@ Instytut Informatyki\\
     z akceptacją przez konfigurację możemy od siebie odseparować za pomocą języka Z-VASSu.
     Te dwie prace były główną motywacją tej pracy.
 
-    W pierwszym rozdziale wprowadzam wszystkie istotne definicje oraz podaje istotne i znane właściwości VASSów i Z-VASSów.
+    W pierwszym rozdziale wprowadzam wszystkie istotne definicje oraz podaję istotne i znane właściwości VASSów i Z-VASSów.
     W drugim opisuje kontekst badań, przytaczam pokrewne wyniki i opisują jak się łączą z tematem tej pracy.
     Następnie w trzecim rozdziale podaję istotne przypadki języków separowalnych, dowodzę ich separowalności i rozwiązuję problem
     separowalności dla podklasy języków deterministycznych VASSów.
-    W czwartym rozdziale wykazuję istnienie VASSów których języków nie da się odseparować.
-    Podaję ogólną konstrukcję skonstruowania VASSu nieseparowalnego, rozważam problem istnienia Z-VASSu równoważnego do danego VASSu i rozwiązuje go
+    W czwartym rozdziale wykazuję istnienie VASSów których języków nie da się odseparować od siebie językiem Z-VASSa.
+    Podaję ogólną konstrukcję skonstruowania VASSu nieseparowalnego, rozważam problem istnienia Z-VASSu równoważnego do danego VASSu i rozwiązuję go
     dla jednowymiarowych deterministycznych VASSów.
 
 
-    Najistotniejszymi wynikami tej pracy są:
+    Najistotniejszymi faktami, które udało mi się wykazać w tej pracy są:
     \begin{enumerate}
         \item Redukcja problemu separacji zbiorów osiągalności za pomocą zbiorów semiliniowych do problemu separacji języków VASSów przez języki Z-VASSów.
-        Pokazuje to, że główny temat pracy jest istotnie trudny.
-        \item Rozwiązanie problemu separacji dla VASSów deterministycznych
-        \item Konstrukcja VASSu nieseparowalnego od ustalonego VASSu A
-        \item Algorytm sprawdzający czy dany jednowymiarowy, deterministyczny VASS jest równoważny Z-VASSowi
+        Pokazuje to, że główny problem sformułowany w pracy jest istotnie trudny \ref{Redukcja_zetchego}
+        \item Prosty przykład niederminizowalnego VASSu \ref{non-det}
+        \item Rozwiązanie problemu separacji dla VASSów deterministycznych \ref{deterministic_separation}
+        \item Konstrukcja VASSu nieseparowalnego od ustalonego VASSu A \ref{lemat_braku_separacji}
+        \item Algorytm sprawdzający czy dany jednowymiarowy, deterministyczny VASS jest równoważny pewnemu Z-VASSowi \ref{algorytm_na_zvass_1dim}
     \end{enumerate}
 
 
@@ -262,9 +242,9 @@ Instytut Informatyki\\
     d--wymiarowym VASSem nazywamy krotkę $(Q,T,\Sigma,q_s,v_s,q_f,v_f)$ gdzie
     \begin{itemize}
         \item     $Q$ jest skończonym zbiorem stanów,
-        \item     $q_s \in Q$ oraz $v_s \in N^d$ stanem i wektorem początkowym,
-        \item     $q_f \in Q$ oraz $v_f \in N^d$ stanem i konfiguracją końcową
-        \item      $T \in Q \times Z^d \times \Sigma \cup \{\epsilon\} \times Q$ zbiorem tranzycji.
+        \item     $q_s \in Q$ oraz $v_s \in N^d$ są odpowiednie stanem początkowym i wektorem początkowym,
+        \item     $q_f \in Q$ oraz $v_f \in N^d$ są odpowiednie stanem końcowym i wektorem końcowym,
+        \item      $T \subset Q \times Z^d \times ( \Sigma \cup \{\epsilon\}) \times Q$ zbiorem tranzycji.
     \end{itemize}
     Konfiguracją VASSu nazywamy parę: stan i wektor $q(v)$ gdzie $q \in Q$ oraz  $v \in N^d$.
 
@@ -273,21 +253,23 @@ Instytut Informatyki\\
     Wektor $v$ nazywamy efektem tranzycji, $a$ literą tranzycji, $q$ stanem początkowym a $p$ stanem końcowym.
 
 
-    Biegiem VASSu długości $n$ z konfiguracji $q(v)$ do konfiguracji $p(u)$ nazywamy ciąg tranzycji i kofniguracji :
+    Biegiem VASSu długości $n$ z konfiguracji $q_1(v_1)$ do konfiguracji $q_n(v_n)$ nazywamy ciąg tranzycji i konfiguracji :
     \[q_1(v_1) \xrightarrow[a_1]{u_1} q_2(v_2) \dots \xrightarrow[a_{n-1}]{u_{n_1}} q_n(v_n) \] gdzie
     sąsiednie stany początkowe i końcowe się zgadzają.
     Tranzycje po literze $\epsilon$ traktujemy tak w przypadku automatów.
 
     Badając języki VASSów rozważamy dwa, istotnie różne warunki akceptacji słowa przez VASS.
-    Pierwszym jest akceptacja przez osiągalność,
+    Pierwszym jest akceptacja przez konfigurację,
     słowo $a_1 \dots a_n$ jest rozpoznawane przez VASS jeśli istnieje poprawny bieg postaci
     \[q_s(v_s) \xrightarrow[a_1]{u_1} q_2(v_2) \dots \xrightarrow[a_{n}]{u_{n}} q_f(v_f) \]
     Drugim jest akceptacja przez stan,
     słowo $a_1 \dots a_n$ jest rozpoznawane przez VASS jeśli istnieje wektor v oraz poprawny bieg postaci
     \[q_s(v_s) \xrightarrow[a_1]{u_1} q_2(v_2) \dots \xrightarrow[a_{n}]{u_{n}} q_f(v) \]
-    Akceptacja przez stan jest prostszym przypadkiem, w tej wersji problem stopu jest PSPACE-zupełny natomiast w przypadku
+    Akceptacja przez stan jest prostszym przypadkiem, w tej wersji problem stopu jest ExpSpace-zupełny \cite{Rackoff} natomiast w przypadku
     akceptacji przez stan jest on już aż Ackermann-zupełny.
-    W pracy, o ile nie zaznaczę tego wcześniej, będę rozważał wyłącznie akceptacje przez osiągalność.
+    Klasycznie rozważamy akceptację przez skończony zbiór konfiguracji lub skończony zbiór stanów, jednak dla uproszczenia notacji w pracy
+    rozważam tylko akceptację przez pojedynczą konfigurację lub stan.
+    W pracy, o ile nie zaznaczę tego wcześniej, będę rozważał wyłącznie akceptacje przez konfigurację.
 
 
     Przez język VASSu rozumiemy zbiór wszystkich słów rozpoznawanych przez VASS i oznaczamy $L(A)$ gdzie $A$ to VASS.
@@ -301,15 +283,15 @@ Instytut Informatyki\\
 
     Mówimy, że dwa VASSy/Z-VASSy są równoważne jeśli ich języki są sobie równe,
 
-    Jeśli mamy dwa rozłączne języki $L_1$ i $L_2$ to powiemy, że język $L_3$ je separuje lewostronnie jeśli
+    Jeśli mamy dwa rozłączne języki $L_1$ i $L_2$ to powiemy, że język $L_3$ je separuje jeśli
     $L_1 \subseteq L_3$ oraz $L_3 \cap L_2 = \emptyset$.
-    Piszemy $L_1 \mid_{L_3} L_2$.
+    Piszemy $L_1 \mid_{L_3} L_2$, $L_1$ nazywamy lewym językiem a $L_2$ prawym językim
     Piszemy $L_1 \nmid L_2$ jeśli nie istnieje język $L_3$ który by je separował.
 
-    Czasami zamiast języków rozpoznawanych przez VASS rozważamy zbiór konfiguracji osiągalnych.
-    W takim przypadku zapominamy  o alfabecie i literach przy tranzycjach.
+    Czasami zamiast języków rozpoznawanych przez VASS lub Z-VASS rozważamy zbiór konfiguracji osiągalnych.
+    W takim przypadku zapominamy o alfabecie i literach przy tranzycjach.
     Przez zbiór konfiguracji osiągalnych rozumiemy wszystkie wartości liczników które możemy osiągnąć w stanie końcowym zaczynając z konfiguracji początkowej.
-    Zbiór osiągalności VASSu A o konfiguracji początkowej $q_s(v_s)$ i stanie akceptującym $q_f$ oznaczamy
+    Zbiór osiągalności VASSu lub Z-VASSu A o konfiguracji początkowej $q_s(v_s)$ i stanie akceptującym $q_f$ oznaczamy
     \[Reach(V) = \{v:q_s(v_s)\rightarrow^*q_f(v)\}\]
 
 
@@ -335,6 +317,12 @@ Instytut Informatyki\\
     \end{theorem}
     \begin{proof}
         Weźmy VASS $A$ nad alfabetem $\Sigma = \{a,b\}$  który rozpoznaje język  \[L = \{a^n b \Sigma^* a^n \mid n \in \mathbb{N}\}.\]
+        Taki VASS łatwo skonstruować, VASS tak długo jak może czyta litery $a$, pętląc się w jednym stanie i inkrementując licznik o 1.
+        Następnie czyta jedną literę $b$ i przechodzi do stanu w którym może pętlić się po dowolnej literze nie zmieniejąc licznika.
+        Ostatecznie przechodzi niederministycznie do ostatecznego stanu stanu $q_f$, w którym może czytać tylko litery $a$, jednocześnie dekerementując licznik o 1.
+        VASS akceptuje przez konfigurację $q_f(0)$.
+
+
         Załóżmy, że istnieje deterministyczny VASS $B=(Q,T,\Sigma,q_s,v_s,q_f,v_f)$ który rozpoznaje L.
         Weźmy $n=|A|$ i słowa \[w_1 = a^n b a^n,\; w_2 = a^n b a^n b a^n\]
         Ponieważ $w_1,w_2 \in L$ to \[A(q_s(v_s),w_1) = q_f(v_f), \;A(q_s(v_s),w_2) = q_f(v_f)\]
@@ -355,6 +343,7 @@ Instytut Informatyki\\
         \[w \in L(A) \Leftrightarrow w \notin L(B)\]
     \end{lemma}
     \begin{proof}
+        Skorzystamy z technik podobnych jak w pracy \cite{Czerwinski2022LanguageIF}.
         Ustalmy $A = (Q,T,\Sigma,q_s,v_s,q_f,v_f)$.
         Dla każdego $w \in \Sigma^*$ chcemy wykryć czy w nie ma poprawnego biegu w VASSie A.
         Dzięki determinizmowi A, po przeczytaniu każdej kolejnej litery A może znajdować się w co najwyżej jednej konfiguracji.
@@ -376,12 +365,18 @@ Instytut Informatyki\\
             oraz tranzycje $z \xrightarrow[\epsilon]{0} q_f'$.
             Stan z odpowiada za zerowanie wszystkich współrzędnych,
             konfiguracja $q_f'(0)$ jest nową konfiguracją końcową.
+
+
             \item By wykryć, że na koniec biegu jesteśmy w stanie innym niż końcowy $q_f$, dodajemy do B nową tranzycje,
             po literze $\epsilon$ i nie zmieniającą liczników, z każdego stanu poza $q_f$ do $z$.
+            W ten sposób akceptujemy przez każdy stan poza $q_f$.
 
 
             Wykrycie innej wartości licznika na koniec biegu jest ciut bardziej subtelne.
+            Intuicyjnie, chcemy dojść do oryginalnej konfiguracji akceptującej $q_f(v_f)$ dowolnie zmieniając n-1 współrzędnych licznika,
+            a jedną wybraną współrzędną ściśle inkrementując lub ściśle dekrementując.
             Dla każdej współrzędnej licznika i, dodajemy do B dwa nowe stany $i^+$ oraz $i^-$.
+            Te stany odpowiadają, za wybór współrzędnej którą będziemy ściśle inkrementować lub ściśle dekrementować.
             Dla stanu końcowego VASSu A $q_f$ dodajemy do nowego VASSu B tranzycje $q \xrightarrow[\epsilon]{+1_i} i^+$ oraz
             $q \xrightarrow[\epsilon]{-1_i} i^-$.
             Dla każdego stanu $i^+$, oraz współrzędnej licznika $j \neq i$, dodajemy do nowego VASSu B tranzycję
@@ -397,7 +392,7 @@ Instytut Informatyki\\
             $\xrightarrow[\epsilon]{-v_f} q_f'$ wylądujemy dokładnie w stanie $q_f'(0).$
 
             \item By wykryć, że znajdujemy się w stanie z którego nie ma tranzycji po obecnej literze dla kazdego stanu
-            $q$ z którego nie wychodzi tranzycja po literze $a$ dodajemy do VASSu tranzycję $ q \xrightarrow[\epsilon]{0} z$
+            $q$ z którego nie wychodzi tranzycja po literze $a$ dodajemy do VASSu tranzycję $ q \xrightarrow[a]{0} z$
 
             \item By wykryć, że nie możemy użyć tranzycji t $q \xrightarrow[a]{v} p$, najpierw zgadujemy, że wartość licznika
             i jest mniejsza niż $-v[i]$ (nie pozwala skorzystać z tranzycji).
@@ -424,7 +419,7 @@ Instytut Informatyki\\
         Następujący problem jest nierostrzygalny:
         \begin{problem}[]{Determinizacja VASSu}
             Dane: & VASS $A$\\
-            Problem: & Czy istnieje deterministyczny VASS $B$, taki że $L(A) = L(B)$\\
+            Problem: & Znajdź deterministyczny VASS $B$, taki że $L(A) = L(B)$ lub wykaż że nie istnieje\\
         \end{problem}
 
 
@@ -448,12 +443,12 @@ Instytut Informatyki\\
         Każdy z tych powodów może być wykryty przez VASS.
 
 
-        Niech $A$ będzie VASSem, takim że $L(A)=\{$ niepoprawne zapisy biegów maszyny T$\}$.
+        Niech $A$ będzie VASSem, takim że językiem rozpoznawanym przez $A$ będzie język niepoprawnych zapisów biegów maszyny T.
         Załóżmy, że potrafimy zdeterminizować $A$.
         Niech $B$ będzie deterministycznym VASSem, takim że $L(B)=L(A)$.
         Ponieważ $B$ jest deterministyczne to zgodnie z \ref{det-closure} potrafimy skonstruować VASS C taki, że $L(C) = \overline{L(B)}$.
         Czyli C akceptuje dokładnie poprawne biegi maszyny T.
-        Sprawdzając czy C posiada jakikolwiek akceptujący bieg (co można zrobić w Ackermannowym czasie\cite{Ackermann-complete,Ackerman})
+        Sprawdzając czy C posiada jakikolwiek akceptujący bieg (co można zrobić w Ackermannowym czasie\cite{Ackerman})
         możemy rozwiązać problem stopu dla maszyny T, co jest oczywistą sprzecznością.
 
         Czyli nie może istnieć algorytm który znajduje determinizację VASSów.
@@ -468,12 +463,12 @@ Instytut Informatyki\\
 
     \chapter{Kontekst badań}
     Separacja języków jest jednym z klasycznych, szeroko badanych problemów informatyki teoretycznej.
-    W ogólnej formie można go sformułować następująco:
+    W ogólnej formie,problem jest parametryzowalny klasami języków \mathbb{F} i \mathbb{G}oraz można go sformułować następująco:
 
 
     \begin{problem}[]{Problem Separacji}
-        Dane: & Języki $L_1,L_2$ z klasy $\mathbb{F}$ i klasa języków $\mathbb{G}$.\\
-        Problem: & Czy istnieje język $L_3 \in \mathbb{F}$ taki, że $L_1 \mid_{L_3} L_2$. \\
+        Dane: & Języki $L_1,L_2$ z klasy $\mathbb{F}$.\\
+        Problem: & Czy istnieje język $L_3 \in \mathbb{G}$ taki, że $L_1 \mid_{L_3} L_2$. \\
     \end{problem}
 
     Problem ten jest rozważany dla różnych klas $\mathbb{F}$ i różnych klas $\mathbb{G}$.
@@ -489,12 +484,12 @@ Instytut Informatyki\\
     Wykorzystali w tym celu technikę nadaproksymacji.
 
     \begin{definition}
-        Niech $A$ będzie 1-VASSem, Q zbiorem stanów, $q_s(v_s)$ konfiguracją początkową a $q_f(v_f)$ konfiguracją akceptującą.
+        Niech $A$ będzie 1-VASSem, Q będzie zbiorem stanów, $q_s(0)$ będzie konfiguracją początkową a $q_f(0)$ konfiguracją akceptującą.
 
 
-        n-aproksymantem $A$ nazwiemy automat $A_n$ który symuluje $A$ dokładnie dla małych wartości licznika
+        Atuomat $A_n$ nazwiemy n-aproksymantem $A$, kiedy $A_n$ symuluje  $A$ dokładnie dla małych wartości licznika
         i z pewną dokładnością dla dużych.
-        W stanach będziemy trzymali dodatkowe informacje o wartości licznika modulo n oraz o przybliżenie,
+        W stanach będziemy trzymali dodatkowe informacje o wartości licznika modulo n oraz przybliżenie
         czy obecny licznik jest duży czy mały.
         Dokładniej mówiąc, $Q_n = Q \times \{0,1 \dots n-1\} \times \{LOW,HIGH\}$ gdzie
         \begin{itemize}
@@ -504,11 +499,11 @@ Instytut Informatyki\\
             tylko podczas tranzycji która sprawi, że wartość symulowanego licznika przekroczy n  (przekręcenie licznika od góry), z HIGH
             na LOW może przejść tylko podczas tranyzcji która sprawi, że symulowana wartość licznika spadnie poniżej 0 (przekręcenie licznika od dołu).
         \end{itemize}
-        Stan początkowy automatu A to $(q_s,0,LOW)$ a stan akceptujący to $(q_f,v_f,LOW)$.
+        Stan początkowy automatu $A_n$ to $(q_s,0,LOW)$ a stan akceptujący to $(q_f,v_f,LOW)$.
 
     \end{definition}
-    Jeśli $w \in L(A)$ to dla każdego n $w \in L(A_n)$.
-    Dodatkowo, dla każdego $n,k \in \mathbb{N}$ jeśli $w \in L(A_{k*n})$ to $w \in L(A_n)$
+    Jeśli $w \in L(A)$ to dla każdego n zachodzi $w \in L(A_n)$.
+    Dodatkowo, dla każdego $n,k \in \mathbb{N}$ jeśli $w \in L(A_{k \cdot n})$ to $w \in L(A_n)$
 
     Kluczowym wnioskiem, potrzebnym do rozwiązania separacji 1-VASSów przez języki regularne jest następujący lemat.
     \begin{lemma}
@@ -521,10 +516,10 @@ Instytut Informatyki\\
         \end{enumerate}
     \end{lemma}
 
-    Korzystając z tego lematu, wnioskujemy że jeśli separacja VASSów A i B zachodzi, to zachodzi również przez
-    pewnego nadaproksymanta $A_n$.
+    Korzystając z tego lematu, wnioskujemy że jeśli separacja VASSów A i B zachodzi, to dla pewnego n języki
+    $L(A_n)$ i $L(B_n)$ są rozłączne.
 
-    Na koniec, autorzy pracy przy pomocy standardowych technik pompowania, pokazują górne wielomianowe ograniczenie na minimalne takie n.
+    Na koniec, autorzy pracy przy pomocy standardowych technik pompowania, pokazują górne wykładnicze ograniczenie na minimalne takie n.
 
     Niestety nie widać jak można przenieść powyższe techniki na grunt separacji języków VASSów przez języki Z-VASSów.
     By wykazać lemat \ref{aproximants}, kluczowy dla algorytmu separacji, autorzy pracy istotnie korzystają z łatwości pompowania biegów automatów.
@@ -548,17 +543,21 @@ Instytut Informatyki\\
     Tak więc techniki użyte w tej pracy nie dają się przenieść na grunt języków VASSów z akceptacją przez konfigurację,
     pomimo pozornej bliskości problemów.
 
+
     \section{Separacja zbiorów osiągalności VASSów za pomocą zbiorów semilinowych}
     Problemem zbliżonym do separacji języków VASSów jest separacja zbiorów osiągalności VASSów.
     Pod pojęciem zbioru osiągalności rozumiemy zbiór wszystkich konfiguracji osiągalnych z konfiguracji początkowej,
     rozważając je zapominamy o literach tranzycji VASSu lub Z-VASSu.
-    Zbiorami semiliniowymi nazywamy zbiory będące sumą kilku zbiorów liniowych o tym samych okresach.
-    Dla ustalonego skończonego zbioru baz $R \subset N^d$ i ustalonych okresów $p_1, \dots p_k \in \mathbb{N}^d$
+    Zbiorami semiliniowymi nazywamy zbiory będące sumą skończenie wielu zbiorów liniowych.
+    Dla ustalonego skończonego zbioru baz $R \subseteq \mathbb{N}^d$ i ustalonych okresów $p_1, \dots p_k \in \mathbb{N}^d$
     można je przedstawić w następującej postaci:
-    \[\{r+x_1*p_1+\dots+x_k*p_k | r \in R, x_1, \dots ,x_k \in \mathbb{N}\}\]
+    \[\{r+x_1 \cdot p_1+\dots+x_k \cdot p_k | r \in R, x_1, \dots ,x_k \in \mathbb{N}\}\]
     Względnie łatwo wykazać, że zbiory osiągalności Z-VASSów są sumą zbiorów semiliniowych, konfiguracja osiągalne w ustalonym stanie
     stanowią dokładnie zbiór semiliniowy.
-    Natomiast każdy zbiór semiliniowy możemy przedstawić jako zbiór osiągalności Z-VASSu.
+    Każdy zbiór liniowy możemy przedstawić jako zbiór osiągalności pewnego Z-VASSu, wystarczy jeden stan i tranzycja na każdy okres.
+    By przedstawić dowolny zbiór semiliniowy jako zbiór osiągalności, dla każdego zbioru liniowego konstruujemy odpowiedni gadżet,
+    wszystkie gadżety łączymy niedeterministycznymi epsilon-tranzycjami.
+
 
     W pracy \cite{reach_sep_jerome} (uwaga 8.4)  Leroux Jerome
     pokazał, że jeśli weźmiemy dwa VASSy A oraz B, to o ile ich zbiory osiągalności są rozłączne to da się je odseparować
@@ -569,20 +568,23 @@ Instytut Informatyki\\
     \begin{lemma}
         \label{reach_language}
         Niech A będzie n-wymiarowym VASSem.
-        Istnieje VASS A'  nad alfabetem $\Sigma=\{a_1,\dots,a_n\}$ rozpoznający język
+        Istnieje VASS A' nad alfabetem $\Sigma=\{a_1,\dots,a_n\}$ rozpoznający język
         \[L=\{a_{1}^{k_1} \dots a_{n}^{k_n}:(k_1, \dots k_n) \in Reach(A)\}\]
     \end{lemma}
     \begin{proof}
         Ustalmy VASS A, z stanem akceptującym $q_f$.
-        VASS A' najpierw symuluje bieg VASSu A, wszystkie tranzycje są po literze $\epsilon$.
+        VASS A' najpierw symuluje bieg VASSu A, wszystkie tranzycje zastępujemy ich kopiami ale po literze $\epsilon$.
+        Tworzymy nowe stany $p_1, \dots , p_n$
         Z stanu $q_f$ możemy niedeterministycznie przejść do stanu $p_1$.
-        Z stanu $p_1$ wychodzą dwie tranzycje, $p_1 \xrightarrow[a_1]{(-1,\dots,0)} p_1$ oraz $p_1 \xrightarrow[\epsilon]{(0,\dots,0) p_2}$.
-        Analogicznie tworzymy stany $p_2,\dots, p_n$.
-
-        Z stanu $p_n$ możemy więc przejść do stanu $p_{n+1}$, konfiguracja $p_{n+1}((0, \dots, 0))$ jest nową konfiguracją akceptującą.
+        Będąc w stanie $p_1$ chcemy skonsumować całą zawartość pierwszej współrzędnej licznika i wypisać tyle samo liter $a_1$.
+        Z stanu $p_1$ wychodzą dwie tranzycje, $p_1 \xrightarrow[a_1]{-e_1} p_1$ oraz $p_1 \xrightarrow[\epsilon]{(0,\dots,0) p_2}$.
+        Analogicznie tworzymy stany $p_2,\dots, p_n$, w każdym z nich możemy skonsumować  i-tą współrzędną licznika i wypisać
+        odpowiednie wiele liter $a_i$ oraz przejść do kolejnego stanu $p_{i+1}$.
+        Konfiguracją akceptującą VASSu A' będzie konfiguracja $p_{n+1}((0, \dots, 0))$
         Tak zbudowany VASS A' rozpoznaje dokładnie kodowania osiągalnych konfiguracji VASSu A.
     \end{proof}
     \begin{lemma}
+        \label{Redukcja_zetchego}
         Jeśli każde dwa rozłączne języki VASSów możemy odseparować od siebie za pomocą języka Z-VASSa to każde dwa rozłączne
         zbiory osiągalności VASSów możemy odseparować za pomocą zbioru semiliniowego
         \[\forall_{A,B}\exists_{\text{Z-VASS }Z} L(A) |_{L(Z)} L(B) \Rightarrow \forall_{A,B} \exists_{S\text{ - zbiór semiliniowy}} Reach(A) |_S Reach(B)\]
@@ -594,25 +596,25 @@ Instytut Informatyki\\
         Zgodnie z lematem\ref{reach_language} stwórzmy VASSy A' i B' które rozpoznają kodowania Reach(A) i Reach(B).
 
         Załóżmy, że istnieje m-wymiarowy Z-VASS Z', taki że $L(A') |_{L(Z')} L(B')$.
-        Niech  konfiguracja początkowa Z' to $q_s '(v_s ')$.
+        Niech konfiguracja początkowa Z' to $q_s '(v_s ')$ a akceptująca to $q_f$.
 
-        Ponieważ przecięcia jezyka regularnego i języka Z-VASSu jest rozpoznawane przez Z-VASS to bez straty ogólności,
+        Ponieważ przecięcie języka regularnego i języka Z-VASSu jest rozpoznawane przez Z-VASS to bez straty ogólności,
         możemy założyć że Z' rozpoznaje język postaci $a_1^* \dots a_n^*$.
 
         Stworzymy teraz Z-VASS Z, taki że L(Z') rozpoznaje kodowania Reach(Z).
 
-        Z będzie miał $2*m$ wymiary.
+        Z będzie miał $2m$ wymiary.
         Posiada prawie te same tranzycje co Z', jeśli Z' posiada tranzycje  $p \xrightarrow[a_i]{v'} q$ to Z posiada tranzycje
         $p \xrightarrow[\epsilon]{v} q$, v na pierwszych m pozycjach jest równe v', na i-tej pozycji ma 1 a na wszystkich pozostałych ma zero.
 
-        Dodatkowo Z posiada nowy stan akceptujący $q_f$ do którego możemy przejść niedeterministycznie po tranzycji $q_f' \xrightarrow[\epsilon]{-v_s} q_f$,
-        gdzie $v_s$ jest równe $v_s'$ na pierwszych m pozycjach i równe zero na pozostałych.
+        Dodatkowo Z posiada nowy stan akceptujący $q_f$ do którego możemy przejść niedeterministycznie po tranzycji $q_f' \xrightarrow[\epsilon]{-v_f} q_f$,
+        gdzie $v_f$ jest równe $v_f'$ na pierwszych m pozycjach i równe zero na pozostałych.
 
         Zdefiniujmy zbiór
-        \[G=\{v \in \mathbb{N}^{2*m} : \text{v ma zera na pierwszych m pozycjach} \}\]
+        \[G=\{v \in \mathbb{N}^{2m} : \text{v ma zera na pierwszych m pozycjach} \}\]
         Przyjrzyjmy się zbiorowi Reach(Z), który jako zbiór osiągalności Z-VASSu jest zbiorem semiliniowym\cite{toolbox}.
         Do stanu $q_f$ możemy dojść samymi zerami na pierwszych m pozycjach.
-        W takim przypadku, konfiguracja końcowa odpowiada słowu rozpoznanemu  przez VASS Z'.
+        W takim przypadku, konfiguracja końcowa odpowiada słowu rozpoznanemu przez VASS Z'.
         Niech $H=Reach(Z) \cap G$.
         Przecięcie zbiorów semiliniowych jest semiliniowe, więc H też jest zbiorem semiliniowym.
         Jeśli zrzutujemy H na ostatnie m współrzędnych, zapominając o pierwszych m to uzyskamy szukany separator S.
@@ -623,10 +625,7 @@ Instytut Informatyki\\
     Istnieją pary języków VASSów które nie są separowalne.
 
 
-
-
     Sugeruje to natomiast, że problem separacji języków VASSów jest istotnie trudny.
-
 
 
 % Nierostrzygalność pustości przecięcia
@@ -642,6 +641,7 @@ Instytut Informatyki\\
 
     \section{Separacja deterministycznych VASSów wykorzystując dopełnienia języków}
     \begin{lemma}
+        \label{deterministic_separation}
         Niech B będzie dowolnym deterministycznym VASSem.
         Wtedy istnieje Z-VASS Z, taki że:
         \[\forall_A L(A) \cap L(B) = \emptyset \Rightarrow L(A) \mid_{L(Z)} L(B)\]
@@ -742,6 +742,7 @@ Instytut Informatyki\\
     przypadek pary nieseparowalnych VASSów.
 
     \begin{lemma}
+        \label{lemat_braku_separacji}
         Niech A będzie deterministycznym VASSem który nie jest równoważny żadnemu Z-VASSowi.
         Wtedy, istnieje VASS B, taki że $A \nmid B$
 
@@ -882,6 +883,7 @@ Instytut Informatyki\\
     Czyli A jest równoważne Z-VASSowi wtedy i tylko wtedy gdy każdy $A_i$ jest równoważny Z-VASSowi.
     Przedstawię i udowodnię teraz algorytm sprawdzenia czy jeden $A_i$ jest równoważny pewnemu Z-VASSowi oraz jego konstrukcję.
     \begin{theorem}
+        \label{algorytm_na_zvass_1dim}
         Niech A będzie deterministycznym 1-VASSem, którego silne spójne składowe tworzą ścieżkę.
         Istnieje Z-VASS B, równoważny A wtedy i tylko wtedy gdy w żadnej silnej spójnej składowej nie istnieje para cykli o wspólnym stanie,
         takich że jeden cykl ma efekt ściśle dodatni a drugi ściśle ujemny.
@@ -973,7 +975,7 @@ Instytut Informatyki\\
 
     \chapter{Podsumowanie}
     W pracy, przyjrzałem się problemowi separacji języków VASSów przez Z-VASSy.
-    Pokazałem, że problem ten trywializuje  się w przypadku języków VASSów deterministycznych.
+    Pokazałem, że problem ten trywializuje się w przypadku języków VASSów deterministycznych.
     Wykazałem redukcję problemu separacji zbiorów osiągalności VASSów \cite{reach_sep_jerome} do problemu separacji języków VASSów.
     Przedstawiłem liczne przypadki braku separacji, na podstawie twierdzenia \ref{bracket-language}
     sformułowałem ciekawą metodę wykazywania braku separcji.
